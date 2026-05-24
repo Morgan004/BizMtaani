@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <title>BizMtaani</title>
+    <meta name="description" content="Kenya's local ward marketplace — discover, buy, sell and rent near you." />
+    <meta name="robots" content="index, follow" />
+
+    <!-- PWA manifest (makes the app installable) -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Theme colour — shown in Android browser chrome and task switcher -->
+    <meta name="theme-color" content="#F97316" />
+
+    <!-- iOS PWA: makes it open fullscreen, no Safari address bar -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="BizMtaani" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="BizMtaani" />
+    <meta property="og:description" content="Kenya's local ward marketplace — discover, buy, sell and rent near you." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/icon-512.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BizMtaani" />
+    <meta name="twitter:description" content="Kenya's local ward marketplace — discover, buy, sell and rent near you." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+      /* Prevent pull-to-refresh bounce so it feels native, not like a webpage */
+      html, body { overscroll-behavior: none; -webkit-overflow-scrolling: touch; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

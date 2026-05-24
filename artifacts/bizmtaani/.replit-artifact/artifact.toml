@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "BizMtaani"
+version = "1.0.0"
+id = "artifacts/bizmtaani"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24184
+
+[services.development]
+run = "pnpm --filter @workspace/bizmtaani run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/bizmtaani", "run", "build" ]
+publicDir = "artifacts/bizmtaani/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24184"
+BASE_PATH = "/"

@@ -1,0 +1,6 @@
+{
+  "buildCommand": "pnpm --filter @workspace/bizmtaani run build",
+  "outputDirectory": "artifacts/bizmtaani/dist/public",
+  "installCommand": "pnpm install",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

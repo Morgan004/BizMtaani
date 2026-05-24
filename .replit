@@ -1,0 +1,70 @@
+modules = ["nodejs-24", "python-3.11"]
+
+[deployment]
+router = "application"
+deploymentTarget = "autoscale"
+
+[deployment.postBuild]
+args = ["pnpm", "store", "prune"]
+env = { "CI" = "true" }
+
+[workflows]
+runButton = "Project"
+
+[agent]
+stack = "PNPM_WORKSPACE"
+expertMode = true
+
+[postMerge]
+path = "scripts/post-merge.sh"
+timeoutMs = 20000
+
+[[ports]]
+localPort = 8080
+externalPort = 8080
+
+[[ports]]
+localPort = 8081
+externalPort = 8081
+
+[[ports]]
+localPort = 8082
+externalPort = 3000
+
+[[ports]]
+localPort = 8083
+externalPort = 3001
+
+[[ports]]
+localPort = 8084
+externalPort = 3002
+
+[[ports]]
+localPort = 8085
+externalPort = 3003
+
+[[ports]]
+localPort = 8086
+externalPort = 4200
+
+[[ports]]
+localPort = 8087
+externalPort = 5000
+
+[[ports]]
+localPort = 8088
+externalPort = 5173
+
+[[ports]]
+localPort = 24184
+externalPort = 80
+
+[userenv]
+
+[userenv.shared]
+VITE_FIREBASE_API_KEY = "AIzaSyAYSIJ1Qd-1j-u1HGIaQ8IhZX2J_mva2Mw"
+VITE_FIREBASE_AUTH_DOMAIN = "bizmtaani-f50d5.firebaseapp.com"
+VITE_FIREBASE_PROJECT_ID = "bizmtaani-f50d5"
+VITE_FIREBASE_STORAGE_BUCKET = "bizmtaani-f50d5.firebasestorage.app"
+VITE_FIREBASE_MESSAGING_SENDER_ID = "22366733449"
+VITE_FIREBASE_APP_ID = "1:22366733449:web:8ffab0c8c96ab557eef258"
