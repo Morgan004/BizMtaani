@@ -1,8 +1,8 @@
 {
-  "name": "bizmtaani-frontend",
+  "name": "bizmtaani",
   "framework": null,
-  "buildCommand": "pnpm --filter @bizmtaani/frontend run build",
-  "outputDirectory": "frontend/dist/public",
+  "buildCommand": "pnpm --filter @workspace/bizmtaani run build",
+  "outputDirectory": "artifacts/bizmtaani/dist/public",
   "installCommand": "pnpm install --no-frozen-lockfile",
   "rewrites": [
     {
