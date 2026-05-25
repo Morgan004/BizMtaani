@@ -236,7 +236,7 @@ export default function Msquare() {
       () => {
         getWardInfo(NAIROBI[0], NAIROBI[1]).then(setLocationInfo);
       },
-      { timeout: 8000 }
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
   }, []);
 

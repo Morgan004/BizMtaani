@@ -195,7 +195,7 @@ export default function PostProduct() {
         getWardInfo(c.lat, c.lng).then(setWardInfo);
       },
       () => setGpsLoading(false),
-      { timeout: 10000 }
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
   }, []);
 
@@ -213,7 +213,7 @@ export default function PostProduct() {
         setGpsLoading(false);
         toast({ title: "Location not found", description: "Please enable GPS and try again.", variant: "destructive" });
       },
-      { timeout: 10000 }
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
   }
 

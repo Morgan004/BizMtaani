@@ -57,7 +57,7 @@ export default function CreateCommunityPost() {
         setCoords(NAIROBI);
         getWardInfo(NAIROBI.lat, NAIROBI.lng).then(setWardInfo);
       },
-      { timeout: 8000 }
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
   }, [user]);
 

@@ -99,7 +99,7 @@ export default function MapView() {
         setUserCoords(NAIROBI);
         setGpsLoading(false);
       },
-      { timeout: 8000 }
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
   }, []);
 

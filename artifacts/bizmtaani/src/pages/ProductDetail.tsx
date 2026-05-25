@@ -124,8 +124,10 @@ export default function ProductDetail() {
       if (snap.exists()) setProduct({ id: snap.id, ...snap.data() } as Product);
       setLoading(false);
     });
-    navigator.geolocation.getCurrentPosition((pos) =>
-      setUserCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude })
+    navigator.geolocation.getCurrentPosition(
+      (pos) => setUserCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+      () => {},
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
   }, [id]);
 
