@@ -1,0 +1,15 @@
+{
+  "functions": {
+    "source": "backend",
+    "runtime": "nodejs_24"
+  },
+  "hosting": {
+    "public": "backend/dist",
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "function": "api"
+      }
+    ]
+  }
+}

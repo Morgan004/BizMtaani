@@ -1,0 +1,7 @@
+backend/
+packages/
+scripts/
+.replit
+.replitignore
+artifacts/
+replit.md

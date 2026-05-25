@@ -1,7 +1,7 @@
 {
-  "name": "bizmtaani",
-  "framework": null,
-  "buildCommand": "pnpm --filter @workspace/api-server run build",
-  "outputDirectory": "artifacts/api-server/dist",
+  "name": "bizmtaani-frontend",
+  "framework": "vite",
+  "buildCommand": "pnpm --filter @bizmtaani/frontend run build",
+  "outputDirectory": "frontend/dist/public",
   "installCommand": "pnpm install"
 }
