@@ -1,7 +1,8 @@
 {
   "name": "bizmtaani",
   "framework": null,
-  "buildCommand": "pnpm --filter @workspace/api-server run build",
-  "outputDirectory": "artifacts/api-server/dist",
-  "installCommand": "pnpm install"
+  "buildCommand": "pnpm --filter @workspace/bizmtaani run build",
+  "outputDirectory": "artifacts/bizmtaani/dist/public",
+  "installCommand": "pnpm install",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
