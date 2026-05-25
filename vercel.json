@@ -1,4 +1,5 @@
 {
+  "name": "bizmtaani",
   "framework": null,
   "buildCommand": "pnpm --filter @workspace/bizmtaani run build",
   "outputDirectory": "artifacts/bizmtaani/dist/public",
