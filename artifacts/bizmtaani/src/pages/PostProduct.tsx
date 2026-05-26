@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "wouter";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { db, storage } from "@/lib/firebase";
+import { db } from "@/lib/firebase";
+import { uploadImage } from "@/lib/uploadImage";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -270,9 +270,8 @@ export default function PostProduct() {
     setAccomFiles(files); setAccomPreviews(previews);
   }
 
-  async function uploadFile(file: File, path: string): Promise<string> {
-    const snap = await uploadBytes(ref(storage, path), file);
-    return getDownloadURL(snap.ref);
+  async function uploadFile(file: File): Promise<string> {
+    return uploadImage(file, "product");
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -301,14 +300,11 @@ export default function PostProduct() {
         createdAt: serverTimestamp(),
       };
 
-      const ts = Date.now();
-      const uid = user.uid;
-
       if (isAccommodation) {
         const urls: string[] = [];
         for (let i = 0; i < 3; i++) {
           if (accomFiles[i]) {
-            urls.push(await uploadFile(accomFiles[i]!, `products/${uid}/${ts}_${i}_${accomFiles[i]!.name}`));
+            urls.push(await uploadFile(accomFiles[i]!));
           }
         }
         await addDoc(collection(db, "products"), {
@@ -321,7 +317,7 @@ export default function PostProduct() {
         });
       } else if (isEatery) {
         let imageUrl = "";
-        if (imageFile) imageUrl = await uploadFile(imageFile, `products/${uid}/${ts}_${imageFile.name}`);
+        if (imageFile) imageUrl = await uploadFile(imageFile);
         const cleanMenu: Record<string, { name: string; price: number }[]> = {};
         for (const { key } of MEAL_PERIODS) {
           cleanMenu[key] = hotelMenu[key].filter((it) => it.name.trim())
@@ -330,7 +326,7 @@ export default function PostProduct() {
         await addDoc(collection(db, "products"), { ...base, title, price: 0, imageUrl, hotelMenu: cleanMenu });
       } else {
         let imageUrl = "";
-        if (imageFile) imageUrl = await uploadFile(imageFile, `products/${uid}/${ts}_${imageFile.name}`);
+        if (imageFile) imageUrl = await uploadFile(imageFile);
         await addDoc(collection(db, "products"), { ...base, title, price: parseFloat(price) || 0, imageUrl });
       }
 

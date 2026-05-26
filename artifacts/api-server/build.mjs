@@ -67,6 +67,8 @@ async function buildAll() {
       "@google/*",
       "googleapis",
       "firebase-admin",
+      "cloudinary",
+      "multer",
       "@parcel/watcher",
       "@sentry/profiling-node",
       "@tree-sitter/*",

@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { signOut, updateProfile } from "firebase/auth";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { auth, storage } from "@/lib/firebase";
+import { auth } from "@/lib/firebase";
+import { uploadImage } from "@/lib/uploadImage";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -22,18 +22,14 @@ export default function Profile() {
   async function handleAvatarChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file || !user) return;
-    if (file.size > 5 * 1024 * 1024) {
-      toast({ title: "Image too large", description: "Maximum 5 MB.", variant: "destructive" });
+    if (file.size > 10 * 1024 * 1024) {
+      toast({ title: "Image too large", description: "Maximum 10 MB.", variant: "destructive" });
       return;
     }
     setUploading(true);
     try {
-      const storageRef = ref(storage, `avatars/${user.uid}/${Date.now()}_${file.name}`);
-      await uploadBytes(storageRef, file);
-      const photoURL = await getDownloadURL(storageRef);
+      const photoURL = await uploadImage(file, "avatar");
       await updateProfile(user, { photoURL });
-      // Force a re-render by triggering auth state — updateProfile mutates the user object
-      // but React won't notice. We reload the page to pick up the new photoURL.
       window.location.reload();
     } catch {
       toast({ title: "Upload failed", description: "Please try again.", variant: "destructive" });

@@ -3,8 +3,8 @@ import { useLocation } from "wouter";
 import {
   collection, addDoc, serverTimestamp,
 } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { db, storage } from "@/lib/firebase";
+import { db } from "@/lib/firebase";
+import { uploadImage } from "@/lib/uploadImage";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -88,12 +88,7 @@ export default function CreateCommunityPost() {
     try {
       let imageUrl = "";
       if (imageFile) {
-        const storageRef = ref(
-          storage,
-          `community_posts/${user.uid}/${Date.now()}_${imageFile.name}`
-        );
-        await uploadBytes(storageRef, imageFile);
-        imageUrl = await getDownloadURL(storageRef);
+        imageUrl = await uploadImage(imageFile, "community");
       }
 
       const geohash = encodeGeohash(coords.lat, coords.lng, 6);
